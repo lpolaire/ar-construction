@@ -1,9 +1,11 @@
-/* Style personnalisé pour l'administration Payload CMS */
+/* Style personnalisé pour l'administration Payload CMS — AR Construction */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700;1,800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
 :root {
   /* Polices de caractères */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Geist Mono', monospace;
+  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-heading: 'Barlow Condensed', sans-serif;
 
   /* Couleurs de la charte AR Construction (Thème Clair) */
   --theme-bg: hsl(42, 28%, 95%);
@@ -27,7 +29,13 @@
   --theme-input-bg: hsl(40, 24%, 98%);
   
   /* Coins arrondis constants */
-  --theme-border-radius: 8px;
+  --theme-border-radius: 6px;
+
+  /* Grille blueprint fine */
+  --blueprint-grid-color: rgba(38, 15%, 78%, 0.08);
+  --blueprint-grid: linear-gradient(var(--blueprint-grid-color) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--blueprint-grid-color) 1px, transparent 1px);
+  --blueprint-grid-size: 24px 24px;
 }
 
 html[data-theme="dark"] {
@@ -50,46 +58,346 @@ html[data-theme="dark"] {
   --theme-border-color: hsl(156, 15%, 22%);
   --theme-input-border: hsl(156, 15%, 22%);
   --theme-input-bg: hsl(156, 20%, 10%);
+
+  /* Grille blueprint sombre */
+  --blueprint-grid-color: rgba(42, 28%, 95%, 0.05);
 }
 
-/* Personnalisations cosmétiques de l'interface */
+/* -------------------------------------------------------------
+   STRUCTURE & TYPOGRAPHIE
+   ------------------------------------------------------------- */
+body {
+  font-family: var(--font-sans);
+  color: var(--theme-text);
+  background-color: var(--theme-bg);
+}
+
+/* Titres administratifs de style d'ingénierie */
+h1, h2, h3, h4, h5, h6,
+.dashboard__group-heading,
+.sidebar__group-title,
+.nav-group-header,
+.collection-label,
+.form-header h1 {
+  font-family: var(--font-heading) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  font-weight: 700 !important;
+}
+
+/* -------------------------------------------------------------
+   EN-TÊTE & NAVIGATION LATÉRALE
+   ------------------------------------------------------------- */
 .app-header {
   border-bottom: 1px solid var(--theme-border-color);
   background-color: var(--theme-elevation-50) !important;
+  backdrop-filter: blur(10px);
+  padding: 12px 24px !important;
+
+  .logo-svg {
+    height: 38px !important;
+    width: auto;
+  }
 }
 
 .sidebar {
   border-right: 1px solid var(--theme-border-color);
   background-color: var(--theme-elevation-50) !important;
-}
+  background-image: var(--blueprint-grid);
+  background-size: var(--blueprint-grid-size);
+  padding: 24px 16px !important;
 
-.card {
-  border-radius: var(--theme-border-radius);
-  border: 1px solid var(--theme-border-color);
-  background-color: var(--theme-elevation-100);
-  box-shadow: 0 12px 34px -22px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.15);
-    border-color: var(--theme-accent);
+  /* Conteneur logo en-tête sidebar */
+  &__logo {
+    margin-bottom: 24px !important;
+    padding-left: 8px;
+    
+    svg {
+      height: 36px !important;
+      width: auto !important;
+    }
+  }
+
+  /* Catégories de navigation */
+  &__group-title {
+    font-family: var(--font-heading) !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.12em !important;
+    color: var(--theme-accent) !important;
+    margin-top: 28px !important;
+    margin-bottom: 10px !important;
+    padding-left: 8px !important;
+    opacity: 0.9;
+  }
+
+  /* Liens de navigation */
+  .sidebar__link, .sidebar__nav-item a {
+    font-family: var(--font-sans) !important;
+    font-weight: 500 !important;
+    border-radius: var(--theme-border-radius);
+    margin-bottom: 4px;
+    padding: 10px 12px !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    border-left: 3px solid transparent !important;
+
+    &:hover {
+      color: var(--theme-accent) !important;
+      background-color: var(--theme-elevation-150) !important;
+      padding-left: 18px !important; /* Micro-glissement d'animation */
+    }
+
+    &.active, &[class*="--active"] {
+      color: var(--theme-accent) !important;
+      background-color: var(--theme-elevation-200) !important;
+      border-left: 3px solid var(--theme-accent) !important;
+      font-weight: 700 !important;
+    }
   }
 }
 
+/* -------------------------------------------------------------
+   FORMULAIRES & INPUTS DE PRÉCISION
+   ------------------------------------------------------------- */
+.field-type {
+  margin-bottom: 20px !important;
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea {
+    background-color: var(--theme-input-bg) !important;
+    border: 1px solid var(--theme-border-color) !important;
+    border-radius: var(--theme-border-radius) !important;
+    padding: 10px 14px !important;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--theme-text) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+    &:focus {
+      border-color: var(--theme-accent) !important;
+      box-shadow: 0 0 0 3px rgba(195, 85, 34, 0.15) !important;
+      outline: none !important;
+    }
+  }
+
+  .react-select__control {
+    background-color: var(--theme-input-bg) !important;
+    border: 1px solid var(--theme-border-color) !important;
+    border-radius: var(--theme-border-radius) !important;
+    min-height: 44px !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+    &--is-focused {
+      border-color: var(--theme-accent) !important;
+      box-shadow: 0 0 0 3px rgba(195, 85, 34, 0.15) !important;
+    }
+  }
+
+  .field-label {
+    font-family: var(--font-sans);
+    font-weight: 600 !important;
+    color: var(--theme-text) !important;
+    font-size: 0.88rem !important;
+    margin-bottom: 8px !important;
+    letter-spacing: -0.01em;
+  }
+
+  .field-description {
+    font-size: 0.8rem !important;
+    color: var(--theme-elevation-600) !important;
+    margin-top: 6px;
+  }
+}
+
+/* -------------------------------------------------------------
+   BOUTONS & RETOUR TACTILE
+   ------------------------------------------------------------- */
 .btn {
   border-radius: var(--theme-border-radius) !important;
+  font-family: var(--font-sans);
   font-weight: 600;
-  transition: all 0.2s ease;
-  
+  letter-spacing: 0.02em;
+  padding: 10px 18px !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
   &:active {
-    transform: scale(0.98);
+    transform: scale(0.97) translateY(1px);
+  }
+
+  /* Style Primaire (Cuivre) */
+  &--style-primary, &.btn--primary {
+    background-color: var(--theme-accent) !important;
+    border-color: var(--theme-accent) !important;
+    color: white !important;
+
+    &:hover {
+      background-color: var(--theme-primary) !important;
+      border-color: var(--theme-primary) !important;
+      box-shadow: 0 6px 16px rgba(195, 85, 34, 0.25) !important;
+    }
+  }
+
+  /* Style Secondaire / Annuler */
+  &--style-secondary, &.btn--secondary {
+    background-color: var(--theme-elevation-200) !important;
+    border-color: var(--theme-border-color) !important;
+    color: var(--theme-text) !important;
+
+    &:hover {
+      background-color: var(--theme-elevation-300) !important;
+      border-color: var(--theme-elevation-400) !important;
+    }
   }
 }
 
-/* Améliorations esthétiques de la table de données */
+/* -------------------------------------------------------------
+   TABLEAUX DE DONNÉES (DASHBOARD ET COLLECTIONS)
+   ------------------------------------------------------------- */
 .table {
   border-radius: var(--theme-border-radius);
+  border: 1px solid var(--theme-border-color) !important;
+  background-color: var(--theme-elevation-50);
   overflow: hidden;
-  border: 1px solid var(--theme-border-color);
+  box-shadow: 0 4px 20px -8px rgba(0,0,0,0.08);
+
+  thead th {
+    background-color: var(--theme-elevation-150) !important;
+    font-family: var(--font-heading) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    font-size: 0.85rem !important;
+    color: var(--theme-text) !important;
+    border-bottom: 2px solid var(--theme-border-color) !important;
+    padding: 16px 20px !important;
+  }
+
+  tbody td {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--theme-border-color) !important;
+    padding: 14px 20px !important;
+    color: var(--theme-text);
+  }
+
+  tbody tr {
+    transition: background-color 0.15s ease;
+
+    &:hover td {
+      background-color: var(--theme-elevation-100) !important;
+    }
+  }
+}
+
+/* -------------------------------------------------------------
+   CARTES ET MODULES DU TABLEAU DE BORD
+   ------------------------------------------------------------- */
+.card, .dashboard__card {
+  border-radius: var(--theme-border-radius);
+  border: 1px solid var(--theme-border-color) !important;
+  background-color: var(--theme-elevation-100) !important;
+  box-shadow: 0 10px 24px -18px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--theme-accent) !important;
+  }
+}
+
+/* -------------------------------------------------------------
+   ÉCRAN DE CONNEXION D'INGÉNIERIE (LOGIN)
+   ------------------------------------------------------------- */
+.template-login {
+  background-color: var(--theme-bg) !important;
+  background-image: 
+    radial-gradient(circle at 50% 35%, rgba(195, 85, 34, 0.08), transparent 45%),
+    var(--blueprint-grid) !important;
+  background-size: 100% 100%, var(--blueprint-grid-size) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  /* Conteneur principal de connexion */
+  &__wrap {
+    background-color: var(--theme-elevation-100) !important;
+    border: 1px solid var(--theme-border-color) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 32px 80px -20px rgba(0, 0, 0, 0.12) !important;
+    padding: 48px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    position: relative;
+    overflow: hidden;
+    
+    /* Coins d'architecte (blueprint brackets) */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 14px; height: 14px;
+      border-top: 2px solid var(--theme-accent);
+      border-left: 2px solid var(--theme-accent);
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0; width: 14px; height: 14px;
+      border-bottom: 2px solid var(--theme-accent);
+      border-right: 2px solid var(--theme-accent);
+    }
+  }
+
+  /* Centrage Logo */
+  &__logo {
+    margin-bottom: 36px !important;
+    display: flex !important;
+    justify-content: center !important;
+    
+    svg {
+      height: 48px !important;
+      width: auto !important;
+    }
+  }
+
+  /* Formulaire et bouton de soumission */
+  &__form {
+    input {
+      background-color: var(--theme-input-bg) !important;
+      border: 1px solid var(--theme-border-color) !important;
+      border-radius: var(--theme-border-radius) !important;
+      padding: 12px 16px !important;
+      font-size: 0.95rem;
+
+      &:focus {
+        border-color: var(--theme-accent) !important;
+        box-shadow: 0 0 0 3px rgba(195, 85, 34, 0.15) !important;
+      }
+    }
+
+    button.btn {
+      background-color: var(--theme-accent) !important;
+      border-color: var(--theme-accent) !important;
+      color: white !important;
+      padding: 12px 16px !important;
+      width: 100%;
+      font-family: var(--font-heading) !important;
+      font-size: 1.1rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
+      box-shadow: 0 4px 16px rgba(195, 85, 34, 0.15) !important;
+      transition: all 0.25s ease !important;
+
+      &:hover {
+        background-color: var(--theme-primary) !important;
+        border-color: var(--theme-primary) !important;
+        box-shadow: 0 6px 20px rgba(195, 85, 34, 0.25) !important;
+      }
+    }
+  }
 }

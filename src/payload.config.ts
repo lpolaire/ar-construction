@@ -11,7 +11,6 @@ import { JobOffers } from './collections/JobOffers'
 import { Services } from './collections/Services'
 import { Realisations } from './collections/Realisations'
 import { Terrains } from './collections/Terrains'
-
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -20,6 +19,12 @@ export default buildConfig({
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      graphics: {
+        Logo: './components/admin/Logo',
+        Icon: './components/admin/Icon',
+      },
     },
   },
   collections: [Users, Media, JobOffers, Services, Realisations, Terrains],
