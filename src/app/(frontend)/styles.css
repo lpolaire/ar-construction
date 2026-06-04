@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 28% 95%;
+    --foreground: 156 23% 10%;
+
+    --card: 40 24% 98%;
+    --card-foreground: 156 23% 10%;
+
+    --popover: 40 24% 98%;
+    --popover-foreground: 156 23% 10%;
+
+    /* Ink navy + copper: AR Construction identity system. */
+    --primary: 218 60% 18%;
+    --primary-foreground: 42 28% 95%;
+    --primary-glow: 207 42% 29%;
+
+    --secondary: 40 22% 88%;
+    --secondary-foreground: 156 23% 10%;
+
+    --muted: 42 18% 86%;
+    --muted-foreground: 155 9% 35%;
+
+    /* Muted oxidized copper / jobsite timber. */
+    --accent: 24 55% 43%;
+    --accent-foreground: 42 28% 96%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 38 15% 78%;
+    --input: 38 15% 78%;
+    --ring: 24 55% 43%;
+
+    --radius: 0.5rem;
+
+    --blueprint: 203 42% 62%;
+    --gradient-hero:
+      radial-gradient(circle at 78% 20%, hsl(24 55% 43% / 0.2), transparent 34%),
+      linear-gradient(
+        102deg,
+        hsl(156 23% 10% / 0.88) 0%,
+        hsl(218 60% 18% / 0.62) 48%,
+        hsl(156 23% 10% / 0.2) 100%
+      );
+    --shadow-soft: 0 24px 70px -34px hsl(156 23% 10% / 0.5);
+    --shadow-card: 0 18px 44px -32px hsl(156 23% 10% / 0.48);
+  }
+
+  .dark {
+    --background: 156 23% 8%;
+    --foreground: 42 28% 95%;
+    --card: 156 20% 10%;
+    --card-foreground: 42 28% 95%;
+    --primary: 207 42% 44%;
+    --primary-foreground: 156 23% 8%;
+    --secondary: 156 15% 17%;
+    --secondary-foreground: 42 28% 95%;
+    --muted: 156 15% 17%;
+    --muted-foreground: 42 10% 70%;
+    --accent: 24 55% 48%;
+    --accent-foreground: 42 28% 96%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 42 28% 95%;
+    --border: 156 15% 22%;
+    --input: 156 15% 22%;
+    --ring: 24 55% 48%;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background-image:
+      linear-gradient(hsl(38 15% 78% / 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(38 15% 78% / 0.14) 1px, transparent 1px);
+    background-size: 64px 64px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-heading;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .blueprint-surface {
+    background-image:
+      linear-gradient(hsl(var(--blueprint) / 0.13) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--blueprint) / 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 18% 24%, hsl(var(--accent) / 0.1), transparent 26%);
+    background-size:
+      46px 46px,
+      46px 46px,
+      100% 100%;
+  }
+
+  .paper-grain {
+    background-image:
+      radial-gradient(hsl(var(--foreground) / 0.055) 0.65px, transparent 0.65px),
+      linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
+    background-size:
+      11px 11px,
+      100% 100%;
+  }
+}
