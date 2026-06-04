@@ -69,6 +69,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    'job-offers': JobOffer;
+    services: Service;
+    realisations: Realisation;
+    terrains: Terrain;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +82,10 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'job-offers': JobOffersSelect<false> | JobOffersSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    realisations: RealisationsSelect<false> | RealisationsSelect<true>;
+    terrains: TerrainsSelect<false> | TerrainsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -163,6 +171,68 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "job-offers".
+ */
+export interface JobOffer {
+  id: number;
+  title: string;
+  location?: string | null;
+  salary?: string | null;
+  description: string;
+  requirements?: string | null;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: 'Home' | 'Hammer' | 'Package';
+  image: number | Media;
+  href: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realisations".
+ */
+export interface Realisation {
+  id: number;
+  title: string;
+  category: 'Plain-pied' | 'À niveaux' | 'Deux étages' | 'Jumelé' | 'Rénovation' | 'Commercial';
+  year: string;
+  image: number | Media;
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "terrains".
+ */
+export interface Terrain {
+  id: number;
+  name: string;
+  location: string;
+  status: 'Disponible' | 'Réservé' | 'Vendu';
+  description?: string | null;
+  features?:
+    | {
+        feature: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -192,6 +262,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'job-offers';
+        value: number | JobOffer;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'realisations';
+        value: number | Realisation;
+      } | null)
+    | ({
+        relationTo: 'terrains';
+        value: number | Terrain;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -274,6 +360,64 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "job-offers_select".
+ */
+export interface JobOffersSelect<T extends boolean = true> {
+  title?: T;
+  location?: T;
+  salary?: T;
+  description?: T;
+  requirements?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  icon?: T;
+  image?: T;
+  href?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "realisations_select".
+ */
+export interface RealisationsSelect<T extends boolean = true> {
+  title?: T;
+  category?: T;
+  year?: T;
+  image?: T;
+  featured?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "terrains_select".
+ */
+export interface TerrainsSelect<T extends boolean = true> {
+  name?: T;
+  location?: T;
+  status?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        feature?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

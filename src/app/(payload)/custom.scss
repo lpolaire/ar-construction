@@ -1,0 +1,95 @@
+/* Style personnalisé pour l'administration Payload CMS */
+
+:root {
+  /* Polices de caractères */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+
+  /* Couleurs de la charte AR Construction (Thème Clair) */
+  --theme-bg: hsl(42, 28%, 95%);
+  --theme-text: hsl(156, 23%, 10%);
+  --theme-elevation-50: hsl(42, 28%, 97%);
+  --theme-elevation-100: hsl(40, 24%, 98%);
+  --theme-elevation-150: hsl(40, 22%, 91%);
+  --theme-elevation-200: hsl(40, 22%, 88%);
+  --theme-elevation-300: hsl(38, 15%, 78%);
+  --theme-elevation-400: hsl(38, 15%, 70%);
+  --theme-elevation-500: hsl(38, 15%, 60%);
+  --theme-elevation-600: hsl(38, 15%, 50%);
+  --theme-elevation-700: hsl(38, 15%, 40%);
+  
+  /* Marine encre principal + Cuivre accent */
+  --theme-primary: hsl(218, 60%, 18%);
+  --theme-primary-hover: hsl(218, 60%, 25%);
+  --theme-accent: hsl(24, 55%, 43%);
+  --theme-border-color: hsl(38, 15%, 78%);
+  --theme-input-border: hsl(38, 15%, 78%);
+  --theme-input-bg: hsl(40, 24%, 98%);
+  
+  /* Coins arrondis constants */
+  --theme-border-radius: 8px;
+}
+
+html[data-theme="dark"] {
+  /* Couleurs de la charte AR Construction (Thème Sombre) */
+  --theme-bg: hsl(156, 23%, 8%);
+  --theme-text: hsl(42, 28%, 95%);
+  --theme-elevation-50: hsl(156, 23%, 6%);
+  --theme-elevation-100: hsl(156, 20%, 10%);
+  --theme-elevation-150: hsl(156, 15%, 14%);
+  --theme-elevation-200: hsl(156, 15%, 17%);
+  --theme-elevation-300: hsl(156, 15%, 22%);
+  --theme-elevation-400: hsl(156, 15%, 30%);
+  --theme-elevation-500: hsl(156, 10%, 40%);
+  --theme-elevation-600: hsl(156, 10%, 50%);
+  --theme-elevation-700: hsl(156, 10%, 60%);
+  
+  --theme-primary: hsl(207, 42%, 44%);
+  --theme-primary-hover: hsl(207, 42%, 50%);
+  --theme-accent: hsl(24, 55%, 48%);
+  --theme-border-color: hsl(156, 15%, 22%);
+  --theme-input-border: hsl(156, 15%, 22%);
+  --theme-input-bg: hsl(156, 20%, 10%);
+}
+
+/* Personnalisations cosmétiques de l'interface */
+.app-header {
+  border-bottom: 1px solid var(--theme-border-color);
+  background-color: var(--theme-elevation-50) !important;
+}
+
+.sidebar {
+  border-right: 1px solid var(--theme-border-color);
+  background-color: var(--theme-elevation-50) !important;
+}
+
+.card {
+  border-radius: var(--theme-border-radius);
+  border: 1px solid var(--theme-border-color);
+  background-color: var(--theme-elevation-100);
+  box-shadow: 0 12px 34px -22px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.15);
+    border-color: var(--theme-accent);
+  }
+}
+
+.btn {
+  border-radius: var(--theme-border-radius) !important;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Améliorations esthétiques de la table de données */
+.table {
+  border-radius: var(--theme-border-radius);
+  overflow: hidden;
+  border: 1px solid var(--theme-border-color);
+}

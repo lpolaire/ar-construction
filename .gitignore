@@ -52,3 +52,9 @@ node_modules/
 # logs
 *.log
 
+# agent scratch
+.agents/scratch/
+.agents/**/*.js
+.agents/**/*.cjs
+
+
